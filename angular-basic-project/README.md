@@ -1,6 +1,8 @@
 # Angular Basic Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
+This is a basic angular project with routing and scss styles file already seted up.
+
+* This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
 
 ## Development server
 
