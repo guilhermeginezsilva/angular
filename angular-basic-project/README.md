@@ -1,4 +1,4 @@
-# Angular Basic Project
+# Angular Basic Project with Sass (.scss), Routing and Basic scss and HTML setup
 
 This is a basic angular project with routing and scss styles file already seted up.
 
