@@ -1,0 +1,9 @@
+@function strip-units($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+@function pxToRem($valInPixels) {
+    $rawValue: strip-units($valInPixels);
+    $remSize: $rawValue / 16;
+    @return #{$remSize}rem;
+}
