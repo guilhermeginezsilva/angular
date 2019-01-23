@@ -8,13 +8,3 @@ body {
     min-width: pxToRem(610px);
     background-color: white;
 }
-
-section {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-main {
-    flex-grow: 1;
-}
