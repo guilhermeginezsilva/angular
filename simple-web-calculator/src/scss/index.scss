@@ -1,0 +1,10 @@
+@import "styles";
+
+html, body {
+    height: 100%;
+}
+
+body {
+    min-width: pxToRem(610px);
+    background-color: white;
+}

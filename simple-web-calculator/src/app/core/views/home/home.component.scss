@@ -1,0 +1,43 @@
+@import "styles";
+
+.jumbotron {
+    margin-bottom: 0;
+
+    .container {
+        margin-left: pxToRem(20px);
+        padding-left: auto;
+    }
+
+    .github-anchor {
+        text-decoration: none;
+        font-size: pxToRem(20px);
+        color: $bootstrap-light;
+
+        .fake-button {
+            width: fit-content;
+            height: pxToRem(45px);
+
+            padding: pxToRem(5px);
+    
+            border: 1px solid $bootstrap-dark;
+            border-radius: pxToRem(15px);
+            background-color: $bootstrap-dark;
+        }
+    }
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+
+    &-header {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    &-body {
+        display: flex;
+        flex-direction: column;
+    }
+}

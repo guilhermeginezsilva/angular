@@ -1,0 +1,15 @@
+<div class="calculator" tabindex="-1" (keypress)="onKeyboardPress($event.key)">
+
+  <a class="signature" target="_blank" href="https://github.com/guilhermeginezsilva/angular">Ginez Git Projects</a>
+
+  <div class="visor">
+    <span>{{visorText}}</span>
+  </div>
+  
+  <div class="keyboard">
+    <div *ngFor="let buttonsCharsRow of keyboardButtons" class="keyboard-row">
+      <div *ngFor="let buttonChar of buttonsCharsRow" class="button-frame" [ngClass]="{'invisible': !buttonChar}">
+        <button (click)="onButtonClick($event.target.value)" [disabled]="!activeButtons.includes(buttonChar)" [attr.value]="buttonChar">{{buttonChar}}</button>
+      </div>
+    </div>
+</div>
