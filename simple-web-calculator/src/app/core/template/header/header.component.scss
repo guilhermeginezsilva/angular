@@ -1,5 +1,6 @@
 @import "styles";
 
 header {
-    height: $headerHeight;
+    min-height: $headerHeight;
+    max-height: $headerHeight;
 }

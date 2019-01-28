@@ -1,27 +1,53 @@
 @import "styles";
 
+$git-logo-width: pxToRem(200px);
+$git-logo-height: pxToRem(60px);
+
+:host {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
 .jumbotron {
     margin-bottom: 0;
+    padding-top: pxToRem(10px);
 
     .container {
-        margin-left: pxToRem(20px);
-        padding-left: auto;
+        // margin-left: pxToRem(20px);
+        padding-left: pxToRem(20px);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 100%;
+
+        .jumbotran-link {
+            display: flex;
+            flex-direction: column;
+            
+            a {
+                align-self: flex-end;
+            }
+        }
     }
 
     .github-anchor {
         text-decoration: none;
-        font-size: pxToRem(20px);
+        display: block;
         color: $bootstrap-light;
+        width: fit-content;
+        height: fit-content;
 
-        .fake-button {
-            width: fit-content;
-            height: pxToRem(45px);
-
-            padding: pxToRem(5px);
-    
-            border: 1px solid $bootstrap-dark;
-            border-radius: pxToRem(15px);
-            background-color: $bootstrap-dark;
+        .github-logo {
+            &::before {
+                content: '';
+                background-image: url('src/assets/images/github_logo.png');
+                display: block;
+                background-size: $git-logo-width $git-logo-height;
+                width: $git-logo-width;
+                height: $git-logo-height;
+            }
         }
     }
 }
@@ -30,7 +56,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    height: 100%;
+    flex-grow: 1;
 
     &-header {
         background-color: rgba(0, 0, 0, 0);

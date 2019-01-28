@@ -1,5 +1,5 @@
 import { StateMachineData } from './state-machine/state-machine-data.model';
-import { StatesMachineState } from './state-machine/states-machine-states.enum';
+import { StatesEnum } from './state-machine/states.enum';
 import { CalculatorService } from './calculator.service';
 import { Component, OnInit } from '@angular/core';
 import { StatesMachine } from './state-machine/states-machine';

@@ -1,11 +1,11 @@
 import { StateMachineData } from './state-machine-data.model';
-import { StatesMachineState } from './states-machine-states.enum';
+import { StatesEnum } from './states.enum';
 import { State } from './state.model';
 import { CalculatorService } from '../calculator.service';
 
 export class StatesMachine {
 
-    private currentState: StatesMachineState;
+    private currentState: StatesEnum;
     private data: StateMachineData;
 
     private typed: string;
@@ -16,16 +16,16 @@ export class StatesMachine {
         private calculatorService?: CalculatorService
     ) {
         this.data = new StateMachineData();
-        this.currentState = StatesMachineState.START;
+        this.currentState = StatesEnum.START;
         this.typed = '';
         this.lastOperator = '';
         this.lastResult = 0;
     }
 
     public start() {
-        const machineState: State = this.machineStates.find(state => state.originState == StatesMachineState.START);
+        const machineState: State = this.machineStates.find(state => state.originState == StatesEnum.START);
         if(machineState) {
-            this.currentState = StatesMachineState.START;
+            this.currentState = StatesEnum.START;
             machineState.function(this.data);
         }
 
@@ -48,22 +48,22 @@ export class StatesMachine {
 
         if(newCharacter.match('^[0-9]*$')) {
             state = this.machineStates.find(state => state.originState === this.currentState 
-                && (state.toState === StatesMachineState.FIRST_NUMBER 
-                    || state.toState === StatesMachineState.NEW_NUMBER));
+                && (state.toState === StatesEnum.FIRST_NUMBER 
+                    || state.toState === StatesEnum.NEW_NUMBER));
 
         } else if(newCharacter.match('[=]') ) {
             state = this.machineStates.find(state => state.originState === this.currentState 
-                && state.toState === StatesMachineState.EQUALS);
+                && state.toState === StatesEnum.EQUALS);
 
         } else if(newCharacter.match('[cC]') ) {
             state = this.machineStates.find(state => state.originState === this.currentState 
-                && state.toState === StatesMachineState.CLEAR);
+                && state.toState === StatesEnum.CLEAR);
 
         } else if(newCharacter.match('[\\+\\-\\*\\/]') ){
             state = this.machineStates.find(state => state.originState === this.currentState 
-                && (state.toState === StatesMachineState.FIRST_OPERATOR 
-                    || state.toState === StatesMachineState.CALCULATE_AND_OPERATOR
-                    || state.toState === StatesMachineState.NEW_OPERATOR));
+                && (state.toState === StatesEnum.FIRST_OPERATOR 
+                    || state.toState === StatesEnum.CALCULATE_AND_OPERATOR
+                    || state.toState === StatesEnum.NEW_OPERATOR));
             
         }
         this.data.currentChar = newCharacter;
@@ -74,60 +74,60 @@ export class StatesMachine {
 
 
     private machineStates: State[] = [
-        {originState: StatesMachineState.START, toState: undefined, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.START, toState: undefined, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toClearFunction(data);
         }},
 
-        {originState: StatesMachineState.START, toState: StatesMachineState.FIRST_NUMBER, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.START, toState: StatesEnum.FIRST_NUMBER, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toFirstNumberFunction(data);
         }},
     
-        {originState: StatesMachineState.FIRST_NUMBER, toState: StatesMachineState.FIRST_OPERATOR, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.FIRST_NUMBER, toState: StatesEnum.FIRST_OPERATOR, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toFirstOperatorFunction(data);
         }},
 
-        {originState: StatesMachineState.FIRST_NUMBER, toState: StatesMachineState.CLEAR, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.FIRST_NUMBER, toState: StatesEnum.CLEAR, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toClearFunction(data);
         }},
-        {originState: StatesMachineState.FIRST_NUMBER, toState: StatesMachineState.FIRST_NUMBER, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.FIRST_NUMBER, toState: StatesEnum.FIRST_NUMBER, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toFirstNumberFunction(data);
         }},
         
-        {originState: StatesMachineState.FIRST_OPERATOR, toState: StatesMachineState.NEW_NUMBER, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.FIRST_OPERATOR, toState: StatesEnum.NEW_NUMBER, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toNewNumberFunction(data);
         }},
-        {originState: StatesMachineState.FIRST_OPERATOR, toState: StatesMachineState.CLEAR, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.FIRST_OPERATOR, toState: StatesEnum.CLEAR, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toClearFunction(data);
         }},
         
-        {originState: StatesMachineState.NEW_NUMBER, toState: StatesMachineState.EQUALS, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.NEW_NUMBER, toState: StatesEnum.EQUALS, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toEqualsFunction(data);
         }},
-        {originState: StatesMachineState.NEW_NUMBER, toState: StatesMachineState.CALCULATE_AND_OPERATOR, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.NEW_NUMBER, toState: StatesEnum.CALCULATE_AND_OPERATOR, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toCalculateAndOperatorFunction(data);
         }},
-        {originState: StatesMachineState.NEW_NUMBER, toState: StatesMachineState.CLEAR, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.NEW_NUMBER, toState: StatesEnum.CLEAR, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toClearFunction(data);
         }},
-        {originState: StatesMachineState.NEW_NUMBER, toState: StatesMachineState.NEW_NUMBER, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.NEW_NUMBER, toState: StatesEnum.NEW_NUMBER, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toNewNumberFunction(data);
         }},
         
-        {originState: StatesMachineState.EQUALS, toState: StatesMachineState.NEW_OPERATOR, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.EQUALS, toState: StatesEnum.NEW_OPERATOR, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toNewOperatorFunction(data);
         }},
-        {originState: StatesMachineState.EQUALS, toState: StatesMachineState.CLEAR, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.EQUALS, toState: StatesEnum.CLEAR, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toClearFunction(data);
         }},
 
-        {originState: StatesMachineState.NEW_OPERATOR, toState: StatesMachineState.NEW_NUMBER, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.NEW_OPERATOR, toState: StatesEnum.NEW_NUMBER, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toNewNumberFunction(data);
         }},
         
-        {originState: StatesMachineState.CALCULATE_AND_OPERATOR, toState: StatesMachineState.NEW_NUMBER, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.CALCULATE_AND_OPERATOR, toState: StatesEnum.NEW_NUMBER, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toNewNumberFunction(data);
         }},
-        {originState: StatesMachineState.CALCULATE_AND_OPERATOR, toState: StatesMachineState.CLEAR, function: (data: StateMachineData)=>{
+        {originState: StatesEnum.CALCULATE_AND_OPERATOR, toState: StatesEnum.CLEAR, function: (data: StateMachineData)=>{
             this.statesMachineFunctions.toClearFunction(data);
         }},
     ];
@@ -139,7 +139,7 @@ export class StatesMachine {
 
     private statesMachineFunctions = {
         toClearFunction: (data: StateMachineData) => {
-            this.currentState = StatesMachineState.START;
+            this.currentState = StatesEnum.START;
             this.typed = '';
             this.lastOperator = '';
             this.lastResult = 0;

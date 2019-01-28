@@ -1,4 +1,4 @@
-export enum StatesMachineState {
+export enum StatesEnum {
     START,
     FIRST_NUMBER,
     NEW_NUMBER,

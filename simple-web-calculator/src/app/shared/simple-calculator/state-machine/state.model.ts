@@ -1,7 +1,7 @@
-import { StatesMachineState } from './states-machine-states.enum';
+import { StatesEnum } from './states.enum';
 
 export class State {
-    originState: StatesMachineState;
-    toState: StatesMachineState;
+    originState: StatesEnum;
+    toState: StatesEnum;
     function: Function;
 }
