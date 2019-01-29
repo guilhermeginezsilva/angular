@@ -1,6 +1,6 @@
 @import "styles";
 @import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
-@include font('Open 24 Display', 'src/assets/open-24-display')
+@include font('Open 24 Display', 'src/assets/open-24-display');
 // @font-face {
 //     font-family: 'Open 24 Display';
 //     src:  url('src/assets/open-24-display.ttf') format('TrueType'),
@@ -29,6 +29,7 @@
 
     .visor {
         background-color: darkgreen;
+        white-space:nowrap;
 
         padding-left: pxToRem(10px);
         padding-right: pxToRem(10px);

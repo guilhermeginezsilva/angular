@@ -21,6 +21,7 @@ $git-logo-height: pxToRem(60px);
         justify-content: space-between;
         align-items: center;
         max-width: 100%;
+        flex-wrap: wrap;
 
         .jumbotran-link {
             display: flex;
@@ -30,26 +31,28 @@ $git-logo-height: pxToRem(60px);
                 align-self: flex-end;
             }
         }
-    }
 
-    .github-anchor {
-        text-decoration: none;
-        display: block;
-        color: $bootstrap-light;
-        width: fit-content;
-        height: fit-content;
-
-        .github-logo {
-            &::before {
-                content: '';
-                background-image: url('src/assets/images/github_logo.png');
-                display: block;
-                background-size: $git-logo-width $git-logo-height;
-                width: $git-logo-width;
-                height: $git-logo-height;
+        .github-anchor {
+            text-decoration: none;
+            display: block;
+            color: $bootstrap-light;
+            width: fit-content;
+            height: fit-content;
+    
+            .github-logo {
+                &::before {
+                    content: '';
+                    background-image: url('src/assets/images/github_logo.png');
+                    display: block;
+                    background-size: $git-logo-width $git-logo-height;
+                    width: $git-logo-width;
+                    height: $git-logo-height;
+                }
             }
         }
     }
+
+
 }
 
 .card {
