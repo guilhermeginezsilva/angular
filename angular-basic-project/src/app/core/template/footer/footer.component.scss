@@ -1,7 +1,18 @@
 @import "styles";
 
+:host {
+    flex-grow: 1;
+    display: flex;
+    max-height: 1.875rem;
+    min-height: 1.875rem;
+}
+
 footer {
     text-align: center;
     color: white;
-    height: $footerHeight;
+    min-height: 1.875rem;
+    width: 100%;
+    overflow: hidden;
+    display: block;
+    flex-grow: 1;
 }

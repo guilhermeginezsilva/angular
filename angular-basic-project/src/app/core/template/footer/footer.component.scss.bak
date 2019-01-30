@@ -1,0 +1,7 @@
+@import "styles";
+
+footer {
+    text-align: center;
+    color: white;
+    height: $footerHeight;
+}
