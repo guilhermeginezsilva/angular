@@ -23,10 +23,11 @@ export class SimpleCalculatorComponent implements OnInit {
     ) {
       this.calculatorStatesMachine = new StatesMachine(this.calculatorService);
       this.keyboardButtons = [
-        ['1','2','3','+'],
-        ['4','5','6','-'],
+        ['1','2','3','C'],
+        ['4','5','6','.'],
         ['7','8','9','*'],
-        ['C','0','=','/'],
+        ['0','+','-','/'],
+        ['='            ],
       ];
   }
 
@@ -40,7 +41,6 @@ export class SimpleCalculatorComponent implements OnInit {
   }
 
   public onKeyboardPress(pressedChar: string) {
-
     const keyChar = this.convertKeyboardPressedKeys(pressedChar);
     if(this.activeButtons.includes(keyChar)) {
       this.calculate(keyChar);

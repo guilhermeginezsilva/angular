@@ -29,8 +29,7 @@
 
     .visor {
         background-color: darkgreen;
-        white-space:nowrap;
-
+        
         padding-left: pxToRem(10px);
         padding-right: pxToRem(10px);
         margin-bottom: pxToRem(10px);
@@ -41,10 +40,11 @@
         
         overflow-y: hidden;
         overflow-x: scroll;
-
+        
         color: lawngreen;
         font-family: "Open 24 Display";
         font-size: pxToRem(50px);
+        white-space:nowrap;
 
         &::-webkit-scrollbar {
             height: pxToRem(15px);
@@ -77,6 +77,7 @@
             .button-frame {
                 display: inline-block;
                 flex-grow: 1;
+                width: 25%;
 
                 margin: pxToRem(5px);
 
@@ -85,6 +86,14 @@
                     display: block;
                     padding: 0;
                     padding-bottom: calc(100% - #{pxToRem(43px)});
+                }
+
+                &:nth-last-child(1) {
+                    &:after {
+                        content: "";
+                        display: none;
+                        padding: 0;
+                    }
                 }
 
                 button {

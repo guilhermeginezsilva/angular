@@ -12,6 +12,11 @@ export class StatesMachine {
     private lastOperator: string;
     private lastResult: number;
 
+    private numberButtons: string[] = ['0','1','2','3','4','5','6','7','8','9','.'];
+    private equalsButton: string[] = ['='];
+    private clearButton: string[] = ['c','C'];
+    private operatorsButton: string[] = ['+','-', '*', '/'];
+
     public constructor(
         private calculatorService?: CalculatorService
     ) {
@@ -46,20 +51,20 @@ export class StatesMachine {
     public parseNewCharacter(newCharacter: string): State {
         let state: State;
 
-        if(newCharacter.match('^[0-9]*$')) {
+        if(this.numberButtons.includes(newCharacter)) {
             state = this.machineStates.find(state => state.originState === this.currentState 
                 && (state.toState === StatesEnum.FIRST_NUMBER 
                     || state.toState === StatesEnum.NEW_NUMBER));
 
-        } else if(newCharacter.match('[=]') ) {
+        } else if(this.equalsButton.includes(newCharacter)) {
             state = this.machineStates.find(state => state.originState === this.currentState 
                 && state.toState === StatesEnum.EQUALS);
 
-        } else if(newCharacter.match('[cC]') ) {
+        } else if(this.clearButton.includes(newCharacter)) {
             state = this.machineStates.find(state => state.originState === this.currentState 
                 && state.toState === StatesEnum.CLEAR);
 
-        } else if(newCharacter.match('[\\+\\-\\*\\/]') ){
+        } else if(this.operatorsButton.includes(newCharacter)){
             state = this.machineStates.find(state => state.originState === this.currentState 
                 && (state.toState === StatesEnum.FIRST_OPERATOR 
                     || state.toState === StatesEnum.CALCULATE_AND_OPERATOR
@@ -131,11 +136,6 @@ export class StatesMachine {
             this.statesMachineFunctions.toClearFunction(data);
         }},
     ];
-
-    private numberButtons: string[] = ['0','1','2','3','4','5','6','7','8','9'];
-    private equalsButton: string[] = ['='];
-    private clearButton: string[] = ['c','C'];
-    private operatorsButton: string[] = ['+','-', '*', '/'];
 
     private statesMachineFunctions = {
         toClearFunction: (data: StateMachineData) => {
