@@ -18,9 +18,4 @@ describe('StatesMachine', () => {
     expect(statesMachine).toBeTruthy();
   });
 
-  it('should be created', () => {
-    statesMachine = new StatesMachine();
-    expect(statesMachine).toBeTruthy();
-  });
-
 });

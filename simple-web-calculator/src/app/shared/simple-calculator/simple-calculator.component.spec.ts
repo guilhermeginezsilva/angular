@@ -27,7 +27,6 @@ describe('SimpleCalculatorComponent', () => {
     fixture = TestBed.createComponent(SimpleCalculatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    
   });
 
   it('should create', () => {

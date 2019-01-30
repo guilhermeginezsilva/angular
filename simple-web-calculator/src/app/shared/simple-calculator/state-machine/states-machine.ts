@@ -27,7 +27,7 @@ export class StatesMachine {
         this.lastResult = 0;
     }
 
-    public start() {
+    public start(): StateMachineData {
         const machineState: State = this.machineStates.find(state => state.originState == StatesEnum.START);
         if(machineState) {
             this.currentState = StatesEnum.START;
@@ -48,7 +48,7 @@ export class StatesMachine {
         return this.data;
     }
 
-    public parseNewCharacter(newCharacter: string): State {
+    private parseNewCharacter(newCharacter: string): State {
         let state: State;
 
         if(this.numberButtons.includes(newCharacter)) {
